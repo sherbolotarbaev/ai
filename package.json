@@ -1,0 +1,22 @@
+{
+  "name": "ai",
+  "version": "1.0.0",
+  "description": "OpenAI integration",
+  "author": "Sherbolot Arbaev",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "ts-node ."
+  },
+  "keywords": [],
+  "license": "ISC",
+  "devDependencies": {
+    "@types/dotenv": "^8.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@types/node": "^20.12.11",
+    "dotenv": "^16.4.5",
+    "openai": "^4.42.0"
+  }
+}
