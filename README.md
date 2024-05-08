@@ -60,6 +60,6 @@ You can customize the behavior of the CLI by modifying the following parameters 
 - `temperature`: The temperature parameter for controlling the randomness of the AI's responses.
 - `max_tokens`: The maximum number of tokens to generate for each response.
 
-## Contributing
+## Contributing 🚀
 
-🚀 Contributions are welcome! If you encounter any issues or have suggestions for improvements, please open an issue or submit a pull request. 🙌🏻
+Contributions are welcome! If you encounter any issues or have suggestions for improvements, please open an issue or submit a pull request. 🙌🏻
