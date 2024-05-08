@@ -1,7 +1,7 @@
 {
   "name": "ai",
   "version": "1.0.0",
-  "description": "OpenAI integration",
+  "description": "AI CLI (OpenAI) 🤖",
   "author": "Sherbolot Arbaev",
   "main": "index.ts",
   "scripts": {
