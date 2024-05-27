@@ -7,6 +7,7 @@ import { config } from 'dotenv';
 config();
 
 import { AI } from './lib/ai';
+import { history } from './lib/history';
 
 const apiKey = process.env.OPENAI_API_KEY || '';
 
@@ -17,34 +18,31 @@ const readline = createInterface({
   output: process.stdout,
 });
 
-const prompt =
-  'Assistance is needed across a spectrum of tasks. Your responses are expected to exude elegance and grace, reflecting a commitment to aesthetic excellence.';
-
 async function main() {
-  console.clear();
-
-  console.info('[INFO] starting stream conversation.');
-
   console.log('\n');
 
   readline.question('Type your message: ', async (input) => {
     console.log('\n');
 
     if (input.length) {
-      await newConversation(input);
+      const output = await newConversation(input);
+      await ai.textToSpeech({ input: output });
     }
 
-    readline.close();
     console.log('\n');
-    console.info('[INFO] stream closed.');
+    main();
   });
 }
 
 main();
 
 const newConversation = async (input: string) => {
+  const prompt =
+    'You are a helpful assistant. You can make question to make the conversation entertaining. My name is Sher';
+
   const messages: ChatCompletionMessageParam[] = [
     { role: 'system', content: prompt },
+    ...history,
     { role: 'user', content: input },
   ];
 
@@ -55,8 +53,23 @@ const newConversation = async (input: string) => {
 
   const output = await ai.completion(params);
 
+  let result = '';
   for await (const chunk of output) {
     const content = ai.extractContent(chunk) ?? '';
+    result += content;
     process.stdout.write(content);
   }
+
+  history.push(
+    {
+      role: 'user',
+      content: input,
+    },
+    {
+      role: 'assistant',
+      content: result,
+    },
+  );
+
+  return result;
 };
